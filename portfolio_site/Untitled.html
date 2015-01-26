@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+	<title>My First Three.js app</title>
+	<link href="styles.css" rel="stylesheet" type="text/css">
+	<style>canvas { width: 100%; height: 100% }</style>
+</head>
+<body>
+	<script src="three.js"></script>
+	<script>
+	// Our Javascript will go here.
+	var scene = new THREE.Scene();
+	
+	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+	
+	var geometry = new THREE.CubeGeometry(1,1,1);
+	
+	
+	//var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+	var mapimage = [];
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage1.png"));
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage2.png"));
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage3.png"));
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage4.png"));
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage5.png"));
+		mapimage.push(new THREE.ImageUtils.loadTexture("images/CubeImage6.png"));
+	
+	var material = 	[];
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[0]}));
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[1]}));
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[2]}));
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[3]}));
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[4]}));
+		material.push(new THREE.MeshLambertMaterial({map: mapimage[5]}));		
+	
+	var cubeMaterial = new THREE.MeshFaceMaterial(material);
+	var cube = new THREE.Mesh(geometry, cubeMaterial);
+	cube.doubleSided = true;
+	scene.add(cube);
+		
+	var directionalLight = new THREE.DirectionalLight( 0xFFFFFF, 1.0);
+	directionalLight.position.set(0,0,1);
+	scene.add(directionalLight);
+	
+	camera.position.z = 5;
+
+	var xRotation = 0.0;
+	var yRotation = 0.0;
+	
+	var xSpeed = 0.0;
+	var ySpeed = 0.0;
+	
+	var zTranslation = 0.0;
+	
+	document.addEventListener("keydown", onDocumentKeyDown, false);
+	
+	
+	function onDocumentKeyDown(event){
+		var keyCode = event.which;
+		
+		//Arrow Key UP
+		if(keyCode == 38) {
+			xSpeed -= .01;
+		}
+		
+		//Arrow Key DOWN
+		else if(keyCode == 40) {
+			xSpeed += .01;
+		}
+		
+		//Arrow Key LEFT
+		else if(keyCode == 37) {
+			ySpeed -= .01;	
+		}
+		
+		//Arrow Key RIGHT
+		else if(keyCode == 39) {
+			ySpeed += .01;
+		}	
+		
+		//PAGE UP
+		else if(keyCode == 33) {
+			zTranslation -= .2;
+		}
+		
+		else if(keyCode == 34) {
+			zTranslation += .2;
+		}
+	}
+	
+	function animateScene() {
+		xRotation += xSpeed;
+		yRotation += ySpeed;
+		
+		cube.rotation.set(xRotation, yRotation, 0.0);
+		
+		cube.position.z = zTranslation;
+		
+		requestAnimationFrame(animateScene);
+		
+		render();	
+	}
+	
+	function render() {
+		//requestAnimationFrame(render);
+		renderer.render(scene, camera);
+		//cube.rotation.x += 0.005;
+		//cube.rotation.y += 0.05;
+	}
+	
+	animateScene();
+	
+	//render();
+
+	</script>
+    
+</body>
+</html>

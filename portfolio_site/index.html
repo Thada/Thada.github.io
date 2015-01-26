@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Thomas Hada</title>
+<link rel="stylesheet" media="screen and (min-device-width: 480px)" href="mobile_styles.css" />
+<link rel="stylesheet" media="screen and (min-device-width: 768px)" href="styles.css" />
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+</head>
+
+<body onLoad="init()" id="background">
+
+<div id="titlebar">
+<a href="index.html"><img src="images/TitleBarShort.jpg" width="500" height="90" id="titletext"></a>
+</div>
+
+<img src="images/Menu.png" width="490" height="523" class="navmenu" id="mapimage" usemap="#links">
+<map name="links">
+    <area id="aboutmehover" shape="polygon" coords="149,88,199,168,289,168,339,88,289,3,199,3" alt="About Me" title="About Me" href="aboutme.html" />
+	<area id="animhover" shape="polygon" coords="150,260,200,340,290,340,340,260,290,175,200,175" alt="Animation" title="Animation" href="animation.html" target="" />
+    <area id="multimhover" shape="polygon" coords="150,435,200,515,290,515,340,435,290,350,200,350" alt="Multimedia" title="Multimedia" href="multimedia.html" target="" />
+    <area id="mediatechhover" shape="polygon" name="mediat" coords="0,170,50,255,140,255,190,170,140,87,50,87" alt="Media Technology" title="Media Technology" href="#" target="" />
+	<area id="compgameshover" shape="polygon" name="compg" coords="0,345,50,430,140,430,190,345,140,260,50,260" alt="Computer Games" title="Computer Games" href="#" target="" />
+	<area id="databasehover" shape="polygon" name="datab" coords="300,347,350,432,440,432,490,347,440,262,350,262" alt="Database Design" title="Database Design" href="databases.html" target="" />
+    <area id="hcihover" shape="polygon" name="hci" coords="300,170,350,255,440,255,490,170,440,87,350,87" alt="Human Computer Interaction" title="Human Computer Interaction" href="hcinteraction.html" target="" />
+</map>
+
+
+<a href="Untitled.html"><canvas id="canvas" width="150" height="130">Your browser does not support HTML5 canvas.</canvas></a>
+
+<script>
+var ctx = document.getElementById("canvas").getContext("2d");
+var alpha = 0.0;
+var timer = 0;
+
+function init() {
+	timer = setInterval("fadeIn()", 100);
+}
+
+function fadeIn() {
+	ctx.clearRect(0,0, canvas.width, canvas.height);
+	ctx.globalAlpha = alpha;
+	var img = new Image();
+	img.onload = function() {
+		ctx.drawImage(img, 0, 0);
+	}
+	img.src = "images/Logo.png";
+	alpha = alpha + 0.1;
+	if (alpha > 1.0) {
+		goingUp = false;
+		clearInterval(timer);
+}
+}
+
+</script>
+
+
+<script>
+$('#aboutmehover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover1.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#animhover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover2.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#multimhover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover3.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#mediatechhover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover4.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#compgameshover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover5.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#databasehover').hover(
+	function() {
+    	$('#mapimage').attr('src', 'images/Menuhover6.png');
+		},
+    function() {
+    	$('#mapimage').attr('src', 'images/Menu.png');
+        }
+    );
+$('#hcihover').hover(
+	function() {
+		$('#mapimage').attr('src', 'images/Menuhover7.png');
+		},
+	function() {
+		$('#mapimage').attr('src', 'images/Menu.png');
+		}
+	);
+</script>
+
+<div class="return">
+	<a href="../index.html">Return to original site.</a>
+</div>
+</body>
+</html>

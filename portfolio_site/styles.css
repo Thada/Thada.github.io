@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+#background {
+	background-repeat: repeat;
+	background-image: url(images/bgtile.jpg);
+	padding: 0px;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+
+}
+
+#canvas {
+	position: absolute;
+	top: 110px;
+	left: 525px;
+}
+
+.description {
+	background: rgba(0, 0, 0, .5);
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12;
+	color: white;
+	position: absolute;
+	padding: 10px;
+	top: 90px;
+	min-width: 800px;
+}
+
+.navmenu {
+	position: absolute;
+	top: 95px;
+	left: 52px;
+	margin: 0, 0, 0, 0;
+}
+
+.preview {
+	position: fixed;
+	top: 350px;
+	width: 100%;
+}
+
+.preview img {
+	border: 4px solid #333;
+	margin-left: 10%;
+	margin-right: 10%;
+	max-width: 500px;
+}
+
+.textbox {
+	position: absolute;
+	width: 400px;
+	top: 180px;
+	left: 105px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12;
+	color: white;
+}
+
+.textback {
+	position: absolute;
+	top: 80px;
+	left: 37px;
+}
+
+#titlebar {
+	background-color: #EFECCA;
+	height: 90px;
+	width: 100%;
+}
+
+#titletext {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+}
+
+.thumbnails {
+	position: absolute;
+	top: 250px;
+	text-align: center;
+	overflow: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
+	height: 90px;
+}
+
+.thumbnails img {
+	height: 60px;
+	border: 4px solid #333;
+}
+
+.thumbnails img:hover {
+	border: 4px solid #666;
+	curser: pointer;	
+}
+
+.return {
+	position: absolute;
+	width: 100%;
+	background: #FFC;
+	top: 620px;
+	line-height: 30px;
+}
+
+.return a {
+	display: block;
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.return a:hover {
+	background: #069;
+	color: #FFF;	
+}
+
+.video {
+	position: relative;
+	background: black;
+	top: 100px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0px;
+	width: 720px; 
+	height: 480px;
+	
+}

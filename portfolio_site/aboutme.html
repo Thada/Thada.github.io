@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Thomas Hada</title>
+<link rel="stylesheet" media="screen and (min-device-width: 480px)" href="mobile_styles.css" />
+<link rel="stylesheet" media="screen and (min-device-width: 750px)" href="styles.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+
+<body id="background">
+<div id="titlebar">
+<a href="index.html"><img src="images/TitleBarShort.jpg" width="500" height="90" id="titletext"></a>
+</div>
+
+<div class="description">
+	<p>My name is Thomas Hada.  I graduated from Stony Brook University with a major in Information Systems and a specialization in Digital Media.  You can contact me via email using the form below:
+</p> 
+
+    <form id="contact" target="_self" onsubmit="" action="javascript: postContactToGoogle()">
+        <fieldset>
+            <label for="name">*Name: </label>
+            <input id="name" type="text" name="name">
+        </fieldset>
+        <fieldset>
+            <label for="email">*Email: </label>
+            <input id="email" type="text" name="email">
+        </fieldset>
+        <fieldset>
+            <label for="feed">*Questions or Feedback: </label>
+            <textarea id="feed" name="feed"></textarea>
+        </fieldset>
+        <div style="text-align: right; padding-bottom: 15px;">* Required</div>
+        <div style="width: 100%; display: block; float: right;">
+            <button id="send" type="submit">Submit</button>
+        </div>
+        <div style="width: 100%; display: block; float: right; padding-top: 15px;">
+            <div class="requestSubmited" style="display:none; text-align: center;">Your request has been sent!</div>
+        </div>
+    </form>
+
+</div>
+
+	<script type="text/javascript">
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+	
+    function postContactToGoogle(){
+        var name = $j('#name').val();
+        var email = $j('#email').val();
+        var feed = $j('#feed').val();
+        if ((name !== "") && (email !== "") && ((feed !== "") && (validateEmail(email)))) {
+            $j.ajax({
+                url: "https://docs.google.com/a/stonybrook.edu/forms/d/1bTaMlz57HVp8WemA_6hJh8QsrFyo_8oD1ivAZv2OlaY/formResponse",
+                data: {"entry.1885375544" : name, "entry.781210344" : email, "entry.1410197363": feed},
+                type: "POST",
+                dataType: "xml",
+                statusCode: {
+                    0: function (){
+ 
+                        $j('#name').val("");
+                        $j('#email').val("");
+                        $j('#feed').val("");
+                        //Success message
+						alert('Your email has been sent.')
+                    },
+                    200: function (){
+                        $j('#name').val("");
+                        $j('#email').val("");
+                        $j('#feed').val("");
+                        //Success Message
+						alert('Your email has been sent.')
+                    }
+                }
+            });
+        }
+        else {
+            //Error message
+			alert('ERROR: Your email has not been sent.')
+        }
+    }
+</script>
+</body>
+</html>

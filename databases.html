@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thomas Hada's Portfolio - Projects - Databases</title>
+
+<!-- My stylesheet -->
+<link href="styles.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="background">
+
+<div>
+<h1 id="bannername">Thomas Hada</h1>
+</div>
+
+<div class="navbar">
+    <ul class="navigation">
+	<li>
+		<h2><a href='index.html'>Home</a></h2>
+    </li>
+	<li class="dropdown">
+		<h2><a href='projects.html'>Projects &#9662;</a></h2>
+        <ul>
+        	<li><a href="animation.html">Animation</a></li>
+        	<li><a href="multimedia.html">Multimedia</a></li>
+        	<li><a href="databases.html">Databases</a></li>
+        	<li><a href="hcinteraction.html">Hum-Comp</a></li>
+        	<li><a href="portfolio_site/index.html">Web Design</a></li>
+        </ul>
+	</li>
+	<li>
+		<h2><a href='aboutme.html'>About</a></h2>
+	</li>
+	</ul>
+</div>
+
+
+<div class="main">
+	<h2>Databases</h2>
+    <br>
+	<p>With a team of 3 other students I created a relational database using Microsoft Access. The database contained data for approximately 5000 music files, retrieved from the <a href="http://labrosa.ee.columbia.edu/millionsong/">Million Song Dataset</a>.  The data was stored in an HDF5 file, which we parsed using a Perl script to pull out only the data we wanted, as well as cut down the size of the database since Access does not handle large volumes of data well. Several custom reports were also created to display important information. Below are some screenshots of the database, various forms, and the reports we included.</p>
+    <br>
+	<div class="thumbnails">
+	<img onmouseover="preview.src=img1.src" name="img1" src="projects/databasescreenshots/dbscreenshot1.jpg" alt="" />
+	<img onmouseover="preview.src=img2.src" name="img2" src="projects/databasescreenshots/dbscreenshot2.jpg" alt="" />
+	<img onmouseover="preview.src=img3.src" name="img3" src="projects/databasescreenshots/dbscreenshot3.jpg" alt="" />
+	<img onmouseover="preview.src=img4.src" name="img4" src="projects/databasescreenshots/dbscreenshot4.jpg" alt="" />
+	<img onmouseover="preview.src=img5.src" name="img5" src="projects/databasescreenshots/dbscreenshot5.jpg" alt="" />
+	<img onmouseover="preview.src=img6.src" name="img6" src="projects/databasescreenshots/dbscreenshot6.jpg" alt="" />
+	<img onmouseover="preview.src=img7.src" name="img7" src="projects/databasescreenshots/dbscreenshot7.jpg" alt="" />
+    <img onmouseover="preview.src=img8.src" name="img8" src="projects/databasescreenshots/dbscreenshot8.jpg" alt="" />
+    <img onmouseover="preview.src=img9.src" name="img9" src="projects/databasescreenshots/dbscreenshot9.jpg" alt="" />
+	<img onmouseover="preview.src=img10.src" name="img10" src="projects/databasescreenshots/dbscreenshot10.jpg" alt="" />
+    </div>
+    <br>
+    <div class="preview">
+	<img name="preview" src="projects/databasescreenshots/dbscreenshot1.jpg" alt=""/>
+	</div>
+
+</div>
+</body>
+</html>
