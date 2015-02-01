@@ -23,7 +23,6 @@ a {
 	background: #FFC;
 	text-align: left;
 	padding: 10px;
-	min-width: 350px;
 }
 
 .main {
@@ -32,7 +31,6 @@ a {
 	margin-left: auto;
 	margin-right: auto;
 	width: 60%;
-	min-width: 300px;
 	height: 100%;
 	min-height: 800px;
 }
@@ -75,7 +73,6 @@ a {
 	background: #FFC;
 	overflow: hidden;
 	line-height: 40px;
-	min-width: 350px;
 }
 
 .navigation a {
@@ -87,8 +84,6 @@ a {
 	padding: 0;
 	zoom: 1;
 	list-style-type: none;
-	min-width: 350px;
-	width: 100%;
 }
 
 .navigation li {
