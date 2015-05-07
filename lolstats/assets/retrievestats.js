@@ -18,7 +18,8 @@ if(window.XMLHttpRequest){
 function getPlayerInfo(playerName){
 	xmlhttp.open("GET", "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + playerName + "?api_key=" + apiKey, false);
 	xmlhttp.send();
-	return JSON.parse(xmlhttp.responseText)[playerName];
+	if(xmlhttp.status==404) return null;
+	else return JSON.parse(xmlhttp.responseText)[playerName];
 }
 
 // Given the player (Summoner) ID, returns a JSON string with stats for that player.
@@ -40,11 +41,18 @@ function displayStats(){
 	// Get the player (Summoner) name from an input field. Spaces need to be removed for the xmlhttp GET method.
 	player = document.getElementById("nameInput").value.replace(/ /g,"");
 	playerInfo = getPlayerInfo(player);
-	playerId = playerInfo.id;
-	playerStats = getPlayerStats(playerId);
-	displaySummName();
-	showChart();
-	showTable();
+	if(playerInfo == null){
+		$("#nameDisplay").empty();
+		$("#winChart").remove();
+		$("#statTable").remove();
+		$("#nameDisplay").append("<h2>Summoner " + player + " not found</h2>");
+	} else {
+		playerId = playerInfo.id;
+		playerStats = getPlayerStats(playerId);
+		displaySummName();
+		showChart();
+		showTable();
+	}
 }
 
 // Prints the player (Summoner) name above the displayed statistics.
@@ -86,6 +94,9 @@ function showChart(){
 }
 
 function showTable(){
+	$("#statTable").remove();
+	$("#tableContainer").append('<table id="statTable" class="table table-bordered table-striped table-responsive"></table>');
+                    
 	var statTable = "<tbody>";
 	statTable += "<tr>";
 	statTable += "<th>Queue Type</th>";
