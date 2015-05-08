@@ -14,12 +14,12 @@ if(window.XMLHttpRequest){
 	xmlhttp	= new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-// Given the player (Summoner) name, returns basic info about the player.
+// Given the player (Summoner) name, returns basic info about the player, or an error code if an error occurs.
 function getPlayerInfo(playerName){
 	xmlhttp.open("GET", "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + playerName + "?api_key=" + apiKey, false);
 	xmlhttp.send();
-	if(xmlhttp.status==404) return null;
-	else return JSON.parse(xmlhttp.responseText)[playerName];
+	if(xmlhttp.status == 200) return JSON.parse(xmlhttp.responseText)[playerName];
+	else return xmlhttp.status;
 }
 
 // Given the player (Summoner) ID, returns a JSON string with stats for that player.
@@ -41,17 +41,51 @@ function displayStats(){
 	// Get the player (Summoner) name from an input field. Spaces need to be removed for the xmlhttp GET method.
 	player = document.getElementById("nameInput").value.replace(/ /g,"");
 	playerInfo = getPlayerInfo(player);
-	if(playerInfo == null){
-		$("#nameDisplay").empty();
-		$("#winChart").remove();
-		$("#statTable").remove();
-		$("#nameDisplay").append("<h2>Summoner " + player + " not found</h2>");
-	} else {
-		playerId = playerInfo.id;
-		playerStats = getPlayerStats(playerId);
-		displaySummName();
-		showChart();
-		showTable();
+	
+	// Error messages will display if an error code was returned by getPlayerInfo.
+	switch(playerInfo){
+		case 400:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			$("#nameDisplay").append("<h2>400: Bad request.</h2>");
+			break;
+		case 401:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			return $("#nameDisplay").append("<h2>401: Unauthorized.</h2>");
+			break;
+		case 404:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			return $("#nameDisplay").append("<h2>404: No Summoner data found for " + player + ".</h2>");
+			break;
+		case 429:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			return $("#nameDisplay").append("<h2>429: Rate limit exceeded.</h2>");
+			break;		
+		case 500:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			return $("#nameDisplay").append("<h2>500: Internal server error.</h2>");
+			break;
+		case 503:
+			$("#nameDisplay").empty();
+			$("#winChart").remove();
+			$("#statTable").remove();
+			return $("#nameDisplay").append("<h2>503: Service unavailable.</h2>");
+			break;
+		default:
+			playerId = playerInfo.id;
+			playerStats = getPlayerStats(playerId);
+			displaySummName();
+			showChart();
+			showTable();
 	}
 }
 
